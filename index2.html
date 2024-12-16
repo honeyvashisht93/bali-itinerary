@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bali Itinerary Map</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      text-align: center;
+      padding: 10px;
+    }
+    #map {
+      height: 60vh;
+      width: 100%;
+    }
+    .itinerary {
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    .itinerary h2 {
+      color: #2c3e50;
+    }
+    .itinerary ul {
+      list-style: none;
+      padding: 0;
+    }
+    .itinerary li {
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <h1>Bali Trip Itinerary</h1>
+  
+  <!-- Map -->
+  <div id="map"></div>
+
+  <!-- Itinerary -->
+  <div class="itinerary">
+    <h2>Your Day-by-Day Itinerary</h2>
+    <ul>
+      <li><strong>Day 1 (25th Dec):</strong> Arrival in Bali, stay in Seminyak, visit Seminyak Beach and dine at La Lucciola.</li>
+      <li><strong>Day 2:</strong> Massage at Bodyworks Spa, visit Petitenget Temple, explore Canggu Rice Fields, and sunset at Batu Bolong Beach.</li>
+      <li><strong>Day 3:</strong> Ferry to Nusa Penida, visit Diamond Beach, Atuh Beach, and Rumah Pohon Treehouse.</li>
+      <li><strong>Day 4:</strong> Explore Kelingking Beach, Broken Beach, Angel’s Billabong, and return to Ubud.</li>
+      <li><strong>Day 5:</strong> Visit Tegallalang Rice Terraces, Bali Swing, Ubud Monkey Forest, and overnight stay at Jimbaran.</li>
+      <li><strong>Day 6:</strong> Relax at Jimbaran Beach, seafood lunch, and depart for the airport.</li>
+    </ul>
+  </div>
+
+  <!-- Leaflet Map Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+  <script>
+    // Initialize the map
+    const map = L.map('map').setView([-8.409518, 115.188919], 10);
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
+    }).addTo(map);
+
+    // Add markers for itinerary locations
+    const landmarks = [
+      { name: "Seminyak Beach", lat: -8.690992, lng: 115.168206, description: "Relax and enjoy the sunset." },
+      { name: "Diamond Beach", lat: -8.745644, lng: 115.619566, description: "Beautiful iconic beach on Nusa Penida." },
+      { name: "Tegallalang Rice Terraces", lat: -8.442038, lng: 115.279081, description: "Famous rice fields in Ubud." },
+      { name: "Kelingking Beach", lat: -8.752322, lng: 115.469592, description: "Breathtaking cliff views." },
+      { name: "Jimbaran Beach", lat: -8.774328, lng: 115.163841, description: "Relaxing beach with fresh seafood." }
+    ];
+
+    landmarks.forEach(landmark => {
+      const marker = L.marker([landmark.lat, landmark.lng]).addTo(map);
+      marker.bindPopup(`<h3>${landmark.name}</h3><p>${landmark.description}</p>`);
+    });
+  </script>
+</body>
+</html>
